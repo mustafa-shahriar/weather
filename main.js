@@ -1,3 +1,5 @@
+import './style.css';
+
 const api = "https://api.openweathermap.org/data/2.5/weather?";
 const appid = "2055879f15c098af0d2997fc974eeb9d";
 
