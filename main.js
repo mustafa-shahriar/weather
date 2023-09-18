@@ -75,7 +75,6 @@ function autocomplete(inp, arr) {
 }
 
 function showSuggestion(array){
-    console.log(array);
     const suggestionUl = document.querySelector("#suggestion");
     const inputField = document.querySelector("#form__input");
 
@@ -85,6 +84,8 @@ function showSuggestion(array){
         li.innerHTML = element;
         li.addEventListener("click",(e)=>{
             inputField.value = e.target.innerHTML;
+            callApi(e.target.innerHTML);
+            console.log(e.target.value);
             suggestionUl.innerHTML = "";
         })
         suggestionUl.appendChild(li);
@@ -93,26 +94,20 @@ function showSuggestion(array){
     document.querySelector("#input").addEventListener("keydown", focusOnALi);
 
     const listItems = document.querySelectorAll('#suggestion li');
-    let focusedIndex = -1;
+    let focusedIndex = 0;
     function focusOnALi(event){
         if (event.key === 'ArrowUp') {
             event.preventDefault();
-            if (focusedIndex > 0) {
-                listItems[focusedIndex].classList.remove("focused");
-                focusedIndex = focusedIndex - 1;
-                listItems[focusedIndex].classList.add("focused");
-                inputField.value = event.target.value;
-            }
+            listItems[focusedIndex].classList.remove("focused");
+            focusedIndex = focusedIndex > 0 ? focusedIndex - 1 : listItems.length - 1;
+            listItems[focusedIndex].classList.add("focused");
+            inputField.value = listItems[focusedIndex].innerHTML;
         } else if (event.key === 'ArrowDown') {
             event.preventDefault();
-            if (focusedIndex < listItems.length - 1) {
-                listItems[focusedIndex]?.classList.remove("focused");
-                focusedIndex = focusedIndex + 1;
-                listItems[focusedIndex].classList.add("focused");
-                inputField.value = listItems[focusedIndex].innerHTML;
-                inputField.value = event.target.value;
-
-            }
+            listItems[focusedIndex].classList.remove("focused");
+            focusedIndex = focusedIndex < listItems.length - 1 ? focusedIndex + 1 : 0;
+            listItems[focusedIndex].classList.add("focused");
+            inputField.value = listItems[focusedIndex].innerHTML;
         }
     }
 }
