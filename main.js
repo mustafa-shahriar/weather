@@ -94,7 +94,7 @@ function showSuggestion(array){
     document.querySelector("#input").addEventListener("keydown", focusOnALi);
 
     const listItems = document.querySelectorAll('#suggestion li');
-    let focusedIndex = 0;
+    let focusedIndex = -1;
     function focusOnALi(event){
         if (event.key === 'ArrowUp') {
             event.preventDefault();
@@ -104,7 +104,7 @@ function showSuggestion(array){
             inputField.value = listItems[focusedIndex].innerHTML;
         } else if (event.key === 'ArrowDown') {
             event.preventDefault();
-            listItems[focusedIndex].classList.remove("focused");
+            listItems[focusedIndex]?.classList.remove("focused");
             focusedIndex = focusedIndex < listItems.length - 1 ? focusedIndex + 1 : 0;
             listItems[focusedIndex].classList.add("focused");
             inputField.value = listItems[focusedIndex].innerHTML;
