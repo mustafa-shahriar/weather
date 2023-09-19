@@ -133,12 +133,10 @@ if ("geolocation" in navigator) {
             console.log(error);
         }
     }
+    console.log("if");
     callApi();
       
-      
     });
-  } else {
-    console.log("Geolocation is not available in this browser.");
   }
   
 
