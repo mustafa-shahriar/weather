@@ -11,30 +11,31 @@
     <div class="overflow-hidden relative">
 		<div id="app" class="bg-skyblue-gradient w-screen h-screen flex flex-col items-center">
 			<div class="mt-14">
-			  <h1 class="text-2xl mb-3">Weather App</h1>
-			  <form class="flex gap-2 items-center relative" id="input">
-				  <input type="text" class="outline-none rounded p-1 pl-2 w-full" autocomplete="off" name="" id="form__input" placeholder="type a city name">
-				  <button class="px-3 py-1 w-24 bg-cyan-500 rounded hover:bg-cyan-700" type="submit">Search</button>
-				  <ul class="absolute top-9 left-0 right-0 [&>*]:li-suggestion" id="suggestion"></ul>
-			  </form>
-		  </div>
-		  <div class="flex-1 flex items-center -mt-12">
-			  <div class="shadow-2xl p-4 rounded-lg w-screen sm:w-96 ">
+			  	<h1 class="text-2xl mb-3">Weather App</h1>
+				<form class="flex gap-2 items-center relative" id="input">
+					<input type="text" class="outline-none rounded p-1 pl-2 w-full" autocomplete="off" name="" id="form__input" placeholder="type a city name">
+					<button class="px-3 py-1 w-24 bg-cyan-500 rounded hover:bg-cyan-700" type="submit">Search</button>
+					<ul class="absolute top-9 left-0 right-0 [&>*]:li-suggestion" id="suggestion"></ul>
+				</form>
+		  	</div>
+		  	<div class="flex-1 flex items-center -mt-12">
+			  	<div class="shadow-2xl p-4 rounded-lg w-screen sm:w-96 ">
 				  <h1 class="text-2xl text-center" id="city-name"></h1>
-				  <div class="mt-2 flex ">
-					<div class="flex-1 flex justify-center items-center">
-						<img src="https://openweathermap.org/img/wn/04d@2x.png"  id="result-img" alt="">
-					</div>
-					<div class=" flex-1 flex flex-col" id="result-deatils">
+				  	<div class="mt-2 flex ">
+						<div class="flex-1 flex justify-center items-center">
+							<img src="https://openweathermap.org/img/wn/04d@2x.png"  id="result-img" alt="">
+						</div>
+						<div class=" flex-1 flex flex-col" id="result-deatils">
 							<h1 class="text-4xl"><span id="temp" ></span>&deg;C</h1>
 							<p id="description" class="text-lg">overcast cloud</p>
 							<p class="text-lg">humitdity: <spna id="humidity"></spna></p>
 							<p class="text-lg">wind speed: <span id="wind-speed"></span>k/h</p>
+						</div>
 					</div>
 				</div>
-			</div>
-		  </div>
-	  </div>
+		  	</div>
+		  	<p>Developed by <a href="https://github.com/mustafa-shahriar" class="text-emerald-700" target="_blank" >Mustafa Shahriar</a></p>
+	  	</div>
 	</div>
 
 
