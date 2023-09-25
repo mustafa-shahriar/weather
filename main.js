@@ -6,7 +6,12 @@ const appid = "2055879f15c098af0d2997fc974eeb9d";
 document.querySelector("#input").addEventListener("submit", (e)=>{
     e.preventDefault();
     const city = e.target[0].value;
-    callApi(city);
+    const pattern = /^(?=.*[^\s]).+$/;
+    if(pattern.test(city)){
+        callApi(city);
+    }else{
+        e.target[0].value = "";
+    }
 })
 
 
@@ -46,15 +51,20 @@ function render(data){
 
 async function callCitiesApi(){
     const res = await fetch("https://countriesnow.space/api/v0.1/countries");
-    const json = await res.json();
-    const data = await json;
-    let citiesArray = [];
-    data.data.forEach(element => {
-        citiesArray.push(...element.cities);
-    });
-    autocomplete(document.querySelector("#form__input"),citiesArray);
-
-
+    try{
+        if(!res.ok){
+            throw new Error("failed to get cities name through api call");
+        }
+        const json = await res.json();
+        const data = await json;
+        let citiesArray = [];
+        data.data.forEach(element => {
+            citiesArray.push(...element.cities);
+        });
+        autocomplete(document.querySelector("#form__input"),citiesArray);
+    }catch(err){
+        console.log(err);
+    }
 }
 
 callCitiesApi();
@@ -115,11 +125,11 @@ function showSuggestion(array){
 
 
 if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+    navigator.geolocation.getCurrentPosition((position) => {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
       
-      async function callApi(city){
+      async function callApi(){
         const endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${appid}`;
         const res = await fetch(endpoint);
         try{
@@ -133,10 +143,9 @@ if ("geolocation" in navigator) {
             console.log(error);
         }
     }
-    console.log("if");
     callApi();
       
     });
-  }
+}
   
 
